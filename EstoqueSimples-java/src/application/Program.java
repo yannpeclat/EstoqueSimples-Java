@@ -9,33 +9,68 @@ public class Program {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Enter product data: ");
-		System.out.print("Name: ");
-		String name = sc.nextLine();
-		System.out.print("Price: ");
-		double price = sc.nextDouble();
+		int option;
+		do {
+			System.out.println("\nMenu:");
+			System.out.println("1 - Adicionar Produto");
+			System.out.println("2 - Remover Produto");
+			System.out.println("3 - Atualizar Estoque");
+			System.out.println("4 - Listar Produtos");
+			System.out.println("5 - Sair");
+			System.out.print("Escolha uma opção: ");
+			option = sc.nextInt();
+			sc.nextLine(); // Consumir quebra de linha
 
-		// Criando o objeto Produto com os valores informados
-		Product product = new Product(name, price);
+			switch (option) {
+				case 1:
+					System.out.print("Nome do produto: ");
+					String name = sc.nextLine();
+					System.out.print("Preço: ");
+					Double price = sc.nextDouble();
+					System.out.print("Quantidade: ");
+					Integer quantity = sc.nextInt();
+					Product.addProduct(new Product(name, price, quantity));
+					System.out.println("Produto adicionado!");
+					break;
 
-		System.out.println();
-		System.out.println("Product data: " + product);
+				case 2:
+					System.out.print("Nome do produto a remover: ");
+					String nameToRemove = sc.nextLine();
+					Product.removeProduct(nameToRemove);
+					break;
 
-		System.out.println();
-		System.out.print("Enter the number of products to be added in stock: ");
-		int quantity = sc.nextInt();
-		product.addProducts(quantity);
+				case 3:
+					System.out.print("Nome do produto: ");
+					String nameToUpdate = sc.nextLine();
+					Product product = Product.findProductByName(nameToUpdate);
+					if (product != null) {
+						System.out.print("Quantidade a adicionar/remover (ex: 10 ou -5): ");
+						int qty = sc.nextInt();
+						if (qty > 0) {
+							product.addQuantity(qty);
+						} else {
+							product.removeQuantity(-qty);
+						}
+						System.out.println("Estoque atualizado!");
+					} else {
+						System.out.println("Produto não encontrado!");
+					}
+					break;
 
-		System.out.println();
-		System.out.println("Updated data: " + product);
+				case 4:
+					System.out.println("Lista de Produtos:");
+					Product.listAllProducts();
+					break;
 
-		System.out.println();
-		System.out.print("Enter the number of products to be removed from stock: ");
-		quantity = sc.nextInt();
-		product.removeProducts(quantity);
+				case 5:
+					System.out.println("Saindo...");
+					break;
 
-		System.out.println();
-		System.out.println("Updated data: " + product);
+				default:
+					System.out.println("Opção inválida! Tente novamente.");
+					break;
+			}
+		} while (option != 5);
 
 		sc.close();
 	}

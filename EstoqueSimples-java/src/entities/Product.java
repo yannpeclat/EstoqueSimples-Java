@@ -1,38 +1,29 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
-
 	private String name;
-	private double price;
-	private int quantity;
+	private Double price;
+	private Integer quantity;
 
-	// Construtor padrão (caso seja necessário criar um produto sem dados iniciais)
-	public Product() {
-	}
+	// Lista de produtos gerenciada pela classe
+	private static List<Product> productList = new ArrayList<>();
 
-	// Construtor principal (name, price, quantity)
 	public Product(String name, double price, int quantity) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 	}
 
-	// Sobrecarga do Construtor (caso a quantidade não seja informada, assume 0)
-	public Product(String name, double price) {
-		this.name = name;
-		this.price = price;
-		this.quantity = 0; // Inicializando com zero
-	}
-
-	// Métodos Getters e Setters
+	// GETTERS e SETTERS
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		if (name != null && !name.trim().isEmpty()) { // Evita nome vazio
-			this.name = name;
-		}
+		this.name = name;
 	}
 
 	public double getPrice() {
@@ -40,41 +31,64 @@ public class Product {
 	}
 
 	public void setPrice(double price) {
-		if (price > 0) { // Evita preço negativo
-			this.price = price;
-		}
+		this.price = price;
 	}
 
 	public int getQuantity() {
-		return quantity; // Apenas retorna, sem set pois a quantidade é controlada pelos métodos
-							// add/remove
+		return quantity;
 	}
 
-	// Método para calcular valor total do estoque
-	public double totalValueInStock() {
-		return price * quantity;
+	public void addQuantity(int quantity) {
+		this.quantity += quantity;
 	}
 
-	// Adiciona produtos ao estoque
-	public void addProducts(int quantity) {
-		if (quantity > 0) { // Evita adicionar quantidade negativa
-			this.quantity += quantity;
-		}
-	}
-
-	public void removeProducts(int quantity) {
-		if (quantity > 0 && quantity <= this.quantity) { // Evita remover mais do que tem
+	public void removeQuantity(int quantity) {
+		if (this.quantity >= quantity) {
 			this.quantity -= quantity;
+		} else {
+			System.out.println("Quantidade insuficiente no estoque!");
 		}
 	}
 
+	// Adiciona um produto na lista
+	public static void addProduct(Product product) {
+		productList.add(product);
+	}
+
+	// Remove um produto pelo nome
+	public static void removeProduct(String name) {
+		Product product = findProductByName(name);
+		if (product != null) {
+			productList.remove(product);
+			System.out.println("Produto removido!");
+		} else {
+			System.out.println("Produto não encontrado.");
+		}
+	}
+
+	// Busca um produto pelo nome
+	public static Product findProductByName(String name) {
+		for (Product p : productList) {
+			if (p.getName().equalsIgnoreCase(name)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
+	// Lista todos os produtos cadastrados
+	public static void listAllProducts() {
+		if (productList.isEmpty()) {
+			System.out.println("Nenhum produto cadastrado!");
+			return;
+		}
+		for (Product p : productList) {
+			System.out.println(p);
+		}
+	}
+
+	@Override
 	public String toString() {
-		return name
-				+ ", $ "
-				+ String.format("%.2f", price)
-				+ ", "
-				+ quantity
-				+ " units, Total: $ "
-				+ String.format("%.2f", totalValueInStock());
+		return name + ", $ " + String.format("%.2f", price) + ", " + quantity + " units";
 	}
 }
