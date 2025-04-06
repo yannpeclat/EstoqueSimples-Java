@@ -34,5 +34,5 @@ Este é um projeto de controle de estoque simples, desenvolvido em Java, que est
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/EstoqueSimples-Java.git
+   git clone https://github.com/yannpeclat/EstoqueSimples-Java.git
    ```
