@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
+	private Integer id;
 	private String name;
 	private Double price;
 	private Integer quantity;
@@ -11,13 +12,18 @@ public class Product {
 	// Lista de produtos gerenciada pela classe
 	private static List<Product> productList = new ArrayList<>();
 
-	public Product(String name, double price, int quantity) {
+	public Product(Integer id, String name, double price, int quantity) {
+		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 	}
 
 	// GETTERS e SETTERS
+	public Integer getId() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -48,6 +54,10 @@ public class Product {
 		} else {
 			System.out.println("Quantidade insuficiente no estoque!");
 		}
+	}
+
+	public double totalValueInStock() {
+		return price * quantity;
 	}
 
 	// Adiciona um produto na lista
@@ -89,6 +99,10 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return name + ", $ " + String.format("%.2f", price) + ", " + quantity + " units";
+		return "ID: " + id +
+				", Name: " + name +
+				", Price: $" + String.format("%.2f", price) +
+				", Quantity: " + quantity +
+				", Total: $" + String.format("%.2f", totalValueInStock());
 	}
 }
