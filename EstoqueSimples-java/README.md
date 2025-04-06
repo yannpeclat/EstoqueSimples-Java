@@ -1,44 +1,68 @@
 # 📦 EstoqueSimples-Java
 
-Este é um projeto de controle de estoque simples, desenvolvido em Java, que está sendo constantemente evoluído conforme avanço nos estudos. Ele simula operações básicas como adicionar, remover, atualizar e listar produtos em um sistema de estoque.
+Projeto simples em Java que simula um sistema de **controle de estoque**, permitindo cadastrar produtos, atualizar o estoque com entradas e saídas e exibir o estado atual. Evoluído conforme a progressão no curso do Nélio Alves.
 
-> 📚 Projeto baseado no curso de Java completo do professor Nélio Alves.
-> ⚙️ Versão atual construída com base no aprendizado até a Seção 12.
-
----
-
-## 🔧 Funcionalidades implementadas
-
-- ✅ Cadastro de produtos com **ID, nome, preço e quantidade**
-- ✅ Prevenção de IDs duplicados
-- ✅ Atualização de estoque (adicionar/remover unidades)
-- ✅ Listagem de todos os produtos com valor total em estoque
-- ✅ Estrutura de código organizada com **orientação a objetos**
-- ✅ Uso de **List (ArrayList)** para manipular múltiplos produtos
-- ✅ Aplicação de **boas práticas de encapsulamento**
+> Projeto atualizado com base no curso [Java COMPLETO Programação Orientada a Objetos + Projetos](https://www.udemy.com/course/java-curso-completo/) do Nélio Alves (Seção 12 ✅)
 
 ---
 
-## 💡 O que estou praticando com este projeto
+## 🧠 Conceitos aplicados
 
-- Estruturas de repetição e decisão
-- Criação de classes e construtores
-- Encapsulamento com `private`, `getters` e `setters`
-- Métodos especializados (`toString`, `addQuantity`, etc.)
-- Coleções com `List<Product>` e `stream().filter()`
-- Organização de pacotes (`entities` e `application`)
+- Programação Orientada a Objetos (POO)
+- Criação de classes e objetos (`Product`)
+- Encapsulamento com getters e setters
+- Construtores com e sem argumentos
+- Métodos personalizados para lógica de negócio
+- Listas (`List<Product>`)
+- Scanner para entrada de dados
+- Organização em pacotes (`application`, `entities`)
+
+---
+
+## 💡 Funcionalidades
+
+- Cadastro de produtos com nome, preço e quantidade
+- Adição e remoção de unidades no estoque
+- Cálculo automático do valor total em estoque
+- Exibição formatada das informações do produto
+- Cadastro de múltiplos produtos em uma lista
 
 ---
 
 ## 🚀 Como executar
 
-1. Clone este repositório:
+1. Clone o repositório:
    ```bash
    git clone https://github.com/yannpeclat/EstoqueSimples-Java.git
    ```
+2. Compile os arquivos:
+   javac -d bin src/\*_/_.java
+3. Execute o programa:
+   java -cp bin application.Program
+
+## 📁 Estrutura do Projeto
+
+EstoqueSimples-Java/
+├── src/
+│ ├── application/
+│ │ └── Program.java
+│ └── entities/
+│ └── Product.java
+├── .gitignore
+└── README.md
+
+## 🌎 English Summary
+
+Simple Java project that simulates a basic inventory system, supporting product registration, stock increase and decrease, and formatted summary. Developed as part of a Java learning journey using OOP principles.
 
 ## 📌 Acesse este projeto no GitHub
 
-[https://github.com/yannpeclat/EstoqueSimples-Java](https://github.com/yannpeclat/EstoqueSimples-Java)
+🔗 [https://github.com/yannpeclat/EstoqueSimples-Java](https://github.com/yannpeclat/EstoqueSimples-Java)
 
-Feito com ❤️ por [Yann Peclat](https://github.com/yannpeclat)
+---
+
+## 💡 Sobre mim
+
+Desenvolvedor em formação, apaixonado por backend e arquitetura de software. Estou construindo um portfólio sólido com projetos reais e evolutivos em Java.
+
+Feito com 💻 e ☕ por [Yann Peclat](https://github.com/yannpeclat)
